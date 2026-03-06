@@ -5,6 +5,8 @@ Ele expõe uma API REST que recebe os dados do email e realiza o envio utilizand
 
 O objetivo do projeto é demonstrar a implementação de um serviço simples de envio de emails seguindo boas práticas com Spring Boot, JPA, DTOs e validação.
 
+
+
 🚀 Tecnologias utilizadas
 
 Java
@@ -25,28 +27,51 @@ Jakarta Validation
 
 Maven
 
+
 📂 Estrutura do Projeto
 src/main/java/com/ms/Email
+
 │
+
 ├── controllers
+
 │   └── EmailController.java
+
 │
+
 ├── dtos
+
 │   └── EmailDto.java
+
 │
-├── entity
+
+├── 
+
 │   └── EmailEntity.java
+
 │
+
 ├── enums
+
 │   └── StatusEmail.java
+
 │
+
 ├── repositories
+
 │   └── EmailRepository.java
+
 │
 ├── services
+
 │   └── EmailService.java
+
 │
+
 └── EmailApplication.java
+
+
+
 ⚙️ Configuração
 
 As configurações estão no arquivo:
@@ -56,6 +81,7 @@ Banco de dados H2
 spring.datasource.url=jdbc:h2:mem:testdb
 spring.datasource.username=sa
 spring.datasource.password=
+
 
 Console do banco:
 
@@ -68,8 +94,12 @@ spring.mail.password=SUA_SENHA_DE_APP
 spring.mail.properties.mail.smtp.auth=true
 spring.mail.properties.mail.smtp.starttls.enable=true
 
+
+
 ⚠️ Importante:
 Utilize senha de aplicativo do Gmail, não a senha da conta.
+
+
 
 📡 Endpoint da API
 Enviar Email
@@ -87,6 +117,7 @@ HTTP 201 - Created
 
 Retorna o objeto do email com o status do envio.
 
+
 📊 Status do Email
 
 O envio pode retornar dois status:
@@ -97,6 +128,8 @@ ERROR
 Eles são definidos no enum:
 
 StatusEmail.java
+
+
 🧪 Testando a API
 
 Você pode testar usando:
@@ -118,6 +151,8 @@ curl -X POST http://localhost:8080/send-email \
  "subject":"Teste",
  "text":"Mensagem de teste"
 }'
+
+
 ▶️ Como rodar o projeto
 
 1️⃣ Clone o repositório
@@ -135,6 +170,9 @@ cd sendEmail
 ou
 
 mvn spring-boot:run
+
+
+
 💡 Objetivo do Projeto
 
 Este projeto foi desenvolvido para:
