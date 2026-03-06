@@ -1,12 +1,10 @@
 package com.ms.Email.dtos;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
 public class EmailDto {
-    //TODO alterando para um teste
 
     @NotBlank
     private String ownerRef;

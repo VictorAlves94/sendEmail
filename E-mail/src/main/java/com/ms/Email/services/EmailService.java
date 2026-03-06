@@ -1,7 +1,7 @@
 package com.ms.Email.services;
 
 import com.ms.Email.enums.StatusEmail;
-import com.ms.Email.model.EmailModel;
+import com.ms.Email.entity.EmailEntity;
 import com.ms.Email.repositories.EmailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
@@ -14,27 +14,32 @@ import java.time.LocalDateTime;
 @Service
 public class EmailService {
     @Autowired
-    EmailRepository emailRepository;
-    @Autowired
     JavaMailSender emailSender;
 
-    public EmailModel sendEmail(EmailModel emailModel) {
-        emailModel.setSendDateEmail(LocalDateTime.now());
+    private final EmailRepository emailRepository;
+
+    public EmailService(EmailRepository emailRepository, JavaMailSender emailSender) {
+        this.emailRepository = emailRepository;
+    }
+
+
+    public EmailEntity sendEmail(EmailEntity emailEntity) {
+        emailEntity.setSendDateEmail(LocalDateTime.now());
         try {
             SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom(emailModel.getEmailFrom());
-            message.setTo(emailModel.getEmailTo());
-            message.setSubject(emailModel.getSubject());
-            message.setText(emailModel.getText());
+            message.setFrom(emailEntity.getEmailFrom());
+            message.setTo(emailEntity.getEmailTo());
+            message.setSubject(emailEntity.getSubject());
+            message.setText(emailEntity.getText());
             emailSender.send(message);
 
-            emailModel.setStatusEmail(StatusEmail.SEND);
+            emailEntity.setStatusEmail(StatusEmail.SEND);
             }catch (MailException e){
-            emailModel.setStatusEmail(StatusEmail.ERROR);
+            emailEntity.setStatusEmail(StatusEmail.ERROR);
 
-        }finally {
-            return emailRepository.save(emailModel);
         }
+            return emailRepository.save(emailEntity);
+
 
     }
 }
