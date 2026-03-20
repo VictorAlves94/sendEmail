@@ -1,8 +1,10 @@
 package com.ms.Email.repositories;
 
-import com.ms.Email.model.EmailModel;
+import com.ms.Email.entity.EmailEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface EmailRepository extends JpaRepository<EmailModel, Long> {
+@Repository
+public interface EmailRepository extends JpaRepository<EmailEntity, Long> {
 
 }
